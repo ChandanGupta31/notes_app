@@ -1,7 +1,8 @@
 // Initialization
+const connect = require("./config");
 const express = require("express");
 const app = express();
-
+connect();
 const mongoose = require("mongoose");
 const Note = require('./models/Note');
 
@@ -11,21 +12,20 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // if extended false -> we cannot send nested object
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb+srv://chandan:Chandan%4031@cluster0.8ntkxd2.mongodb.net/notesdb")
 
 app.get("/", function(req, res){
-  const response = {message : "API Works Successfully"};
-  res.json(response);
+    const response = {message : "API Works Successfully"};
+    res.json(response);
 });
 
-  // Root path route
 const noteRouter = require("./routes/Note");
-  app.use("/notes", noteRouter);
+app.use("/notes", noteRouter);
+
 
 
 
 // Starting the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, function(){
-  console.log("Server Started at PORT:" + PORT );
+    console.log("Server Started at PORT:" + PORT );
 });
