@@ -2,7 +2,7 @@
 const connect = require("./config");
 const express = require("express");
 const app = express();
-connect();
+// connect();
 const mongoose = require("mongoose");
 const Note = require('./models/Note');
 
