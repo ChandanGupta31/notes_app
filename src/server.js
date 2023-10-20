@@ -26,9 +26,7 @@ app.get("/", function(req, res){
 });
 
 app.get("/list",async function(req, res){
-    var notes = await Note.find({
-        userid : req.body.userid
-    });
+    var notes = await Note.find();
     res.json(notes);
 });
 
