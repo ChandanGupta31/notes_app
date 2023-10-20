@@ -1,8 +1,7 @@
 // Initialization
-const connect = require("./config");
 const express = require("express");
 const app = express();
-// connect();
+
 const mongoose = require("mongoose");
 const Note = require('./models/Note');
 
@@ -12,15 +11,17 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // if extended false -> we cannot send nested object
 app.use(bodyParser.json());
 
+mongoose.connect("mongodb+srv://chandan:Chandan%4031@cluster0.8ntkxd2.mongodb.net/notesdb").then(async function(){
 
-app.get("/", function(req, res){
-    const response = {message : "API Works Successfully"};
-    res.json(response);
+    app.get("/", function(req, res){
+        const response = {message : "API Works Successfully"};
+        res.json(response);
+    });
+
+    const noteRouter = require("./routes/Note");
+    app.use("/notes", noteRouter);
+
 });
-
-const noteRouter = require("./routes/Note");
-app.use("/notes", noteRouter);
-
 
 
 
