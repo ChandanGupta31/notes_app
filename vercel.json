@@ -3,14 +3,14 @@
     "name": "notes_app",
     "builds": [
       {
-        "src": "./src/server.js",
+        "src": "src/server.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
-        "src": "/api/(.*)",
-        "dest": "./src/server.js"
+        "src": "/(.*)",
+        "dest": "src/server.js"
       }
     ]
   }
