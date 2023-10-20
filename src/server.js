@@ -13,17 +13,24 @@ app.use(bodyParser.json());
 
 mongoose.connect("mongodb+srv://chandan:Chandan%4031@cluster0.8ntkxd2.mongodb.net/notesdb").then(function(){
 
-    app.get("/", function(req, res){
-        const response = {message : "API Works Successfully"};
-        res.json(response);
-    });
+    
 
     const noteRouter = require("./routes/Note");
     app.use("/notes", noteRouter);
 
 });
 
+app.get("/", function(req, res){
+    const response = {message : "API Works Successfully"};
+    res.json(response);
+});
 
+app.get("/list",async function(req, res){
+    var notes = await Note.find({
+        userid : req.body.userid
+    });
+    res.json(notes);
+});
 
 
 // Starting the server
