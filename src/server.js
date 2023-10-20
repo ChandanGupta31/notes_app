@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // if extended false -> we cannot send nested object
 app.use(bodyParser.json());
 
-await mongoose.connect("mongodb+srv://chandan:Chandan%4031@cluster0.8ntkxd2.mongodb.net/notesdb").then(function(){
+mongoose.connect("mongodb+srv://chandan:Chandan%4031@cluster0.8ntkxd2.mongodb.net/notesdb").then(function(){
 
     app.get("/", function(req, res){
         const response = {message : "API Works Successfully"};
