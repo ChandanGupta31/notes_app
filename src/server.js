@@ -11,18 +11,19 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // if extended false -> we cannot send nested object
 app.use(bodyParser.json());
 
-// mongoose.connect("mongodb+srv://chandan:Chandan%4031@cluster0.8ntkxd2.mongodb.net/notesdb").then(function(){
+await mongoose.connect("mongodb+srv://chandan:Chandan%4031@cluster0.8ntkxd2.mongodb.net/notesdb").then(function(){
 
-    
-// });
+    app.get("/", function(req, res){
+        const response = {message : "API Works Successfully"};
+        res.json(response);
+    });
 
-app.get("/", function(req, res){
-    const response = {message : "API Works Successfully"};
-    res.json(response);
+    const noteRouter = require("./routes/Note");
+    app.use("/notes", noteRouter);
+
 });
 
-const noteRouter = require("./routes/Note");
-app.use("/notes", noteRouter);
+
 
 
 // Starting the server

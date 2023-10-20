@@ -1,13 +1,9 @@
-const connect = require("./../config");
 const express = require("express");
 const router = express.Router();
-
-connect();
 
 const Note = require("./../models/Note");
 
 router.get("/list",async function(req, res){
-    await connect();
     var notes = await Note.find({
         userid : req.body.userid
     });
@@ -17,8 +13,6 @@ router.get("/list",async function(req, res){
 
 
 router.post("/add",async function(req, res){
-
-    await connect();
 
     await Note.deleteOne({id : req.body.id});
 
@@ -39,7 +33,6 @@ router.post("/add",async function(req, res){
 
 
 router.post("/delete", async function(req, res){
-    await connect();
     await Note.deleteOne({id : req.body.id});
     const response = {message : "Note deleted " + `id = ${req.body.id}`};
     res.json(response);
