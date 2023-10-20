@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Note = require("./../models/Note");
 
-app.get("/list",async function(req, res){
+router.get("/list",async function(req, res){
     var notes = await Note.find({
         userid : req.body.userid
     });
@@ -12,7 +12,7 @@ app.get("/list",async function(req, res){
 
 
 
-app.post("/add",async function(req, res){
+router.post("/add",async function(req, res){
 
     await Note.deleteOne({id : req.body.id});
 

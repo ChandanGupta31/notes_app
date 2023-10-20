@@ -13,13 +13,14 @@ app.use(bodyParser.json());
 
 mongoose.connect("mongodb+srv://chandan:Chandan%4031@cluster0.8ntkxd2.mongodb.net/notesdb").then(function(){
 
-    app.get("/", function(req, res){
-        const response = {message : "API Works"};
-        res.json(response);
-    });
+  // Root path route
+  app.get("/", function(req, res){
+    const response = {message : "API Works Successfully"};
+    res.json(response);
+  });
 
-    const noteRouter = require("./routes/Note");
-    app.use("/notes", noteRouter);
+  const noteRouter = require("./routes/Note");
+  app.use("/notes", noteRouter);
 
 });
 
@@ -29,5 +30,5 @@ mongoose.connect("mongodb+srv://chandan:Chandan%4031@cluster0.8ntkxd2.mongodb.ne
 // Starting the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, function(){
-    console.log("Server Started at PORT:" + PORT );
+  console.log("Server Started at PORT:" + PORT );
 });
