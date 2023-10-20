@@ -1,5 +1,8 @@
+const connect = require("./../config");
 const express = require("express");
 const router = express.Router();
+
+connect();
 
 const Note = require("./../models/Note");
 
